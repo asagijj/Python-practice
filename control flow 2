@@ -1,0 +1,58 @@
+# ground solution1
+def shipping_cost_ground(weight):
+  if weight<=2:
+    return weight*1.5
+  elif (weight>2) and (weight<=6):
+    return weight*3+20
+  elif (weight>6) and (weight<=10):
+    return weight*4+20
+  else:
+    return weight*4.75+20
+
+premium_ground_shipping =125
+
+# ground solution2
+def shipping_cost_ground(weight):
+  if weight<=2:
+    price_per_pound = 1.50
+  elif weight<=6:
+    price_per_pound = 3.00
+  elif weight<=10:
+    price_per_pound = 4.00
+  else :
+    price_per_pound = 4.75
+  return 20 + (price_per_pound * weight)
+
+# drone solution
+def shipping_cost_drone(weight):
+  if weight<=2:
+    price_per_pound = 4.50
+  elif weight<=6:
+    price_per_pound = 9.00
+  elif weight<=10:
+    price_per_pound = 12.00
+  else :
+    price_per_pound = 14.25
+  return price_per_pound * weight
+
+
+
+def print_cheapest_shipping_method(weight):
+  ground = shipping_cost_ground(weight)
+  premium = premium_ground_shipping
+  drone = shipping_cost_drone(weight)
+  
+  if ground<premium and ground<drone:
+    method = "Ground"
+    cost = ground
+  elif premium<ground and premium<drone:
+    method = "Premium"
+    cost = premium
+  else:
+    method = "Drone"
+    cost = drone
+  return "The cheapest options is " + str(cost) + " with the method of " + method +" !"
+ 
+
+print(print_cheapest_shipping_method(4.8))
+print(print_cheapest_shipping_method(41.5))
